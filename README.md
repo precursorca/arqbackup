@@ -1,6 +1,6 @@
 # Arqbackup module
 
-> v. 1.0  
+> v. 1.0.1  
 > December 21, 2020  
 > Alex Narvey / Precursor.ca  
 
@@ -36,6 +36,7 @@ Errors is independent of whether the backup is fresh or stale.
 
 ## Updates
 
+* December 21, 2020 Version 1.0.1  Made changes and modifications for efficienty suggested by John Eberle (Tuxudo)
 * December 21, 2020 Version 1.0 
 
 ## Contributors
