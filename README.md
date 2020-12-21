@@ -12,13 +12,13 @@ Retrieves information from the most recent log file /Library/Logs/ArqAgent/backu
 
 The following information is stored in the table:
 
-# version - The Arqbackup.app version
-# source - Name of source
-# destination - Name of destination
-# completed - Timestamp of last run
-# amount - Amount in GB
-# error - Error message (the first error message, if any)
-# status = Marked as 'error' if there is an error (for easier search in MR.)
+* version - The Arqbackup.app version
+* source - Name of source
+* destination - Name of destination
+* completed - Timestamp of last run
+* amount - Amount in GB
+* error - Error message (the first error message, if any)
+* status = Marked as 'error' if there is an error (for easier search in MR.)
 
 ## Notes
 
