@@ -31,7 +31,7 @@ Current refers to backups run within the last 24 hours
 ## Stale
 Stale refers to backups more than 24 hours old
 
-#Errors
+## Errors
 Errors is independent of whether the backup is fresh or stale.
 
 ## Updates
