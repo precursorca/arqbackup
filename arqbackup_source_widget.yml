@@ -1,0 +1,8 @@
+type: scrollbox
+widget_id: arqbackup-source-scrollbox-widget
+api_url: /module/arqbackup/get_list/source
+i18n_title: arqbackup.widget.source_title
+icon: fa-laptop
+listing_link: /show/listing/arqbackup/arqbackup
+search_key: label
+badge: count

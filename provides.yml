@@ -1,0 +1,23 @@
+client_tabs:
+    arqbackup:
+        view: arqbackup_tab
+        i18n: arqbackup.title
+listings:
+    arqbackup:
+        view: arqbackup_listing
+        i18n: arqbackup.listing.title
+reports:
+    arqbackup:
+        view: arqbackup_report
+        i18n: arqbackup.report.title
+widgets:
+    arqbackup:
+        view: arqbackup_widget
+    arqbackup_version:
+        view: arqbackup_version_widget
+    arqbackup_source:
+        view: arqbackup_source_widget
+    arqbackup_completed:
+        view: arqbackup_completed_widget
+    arqbackup_error:
+        view: arqbackup_error_widget

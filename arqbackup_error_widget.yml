@@ -1,0 +1,8 @@
+type: scrollbox
+widget_id: arqbackup-error-scrollbox-widget
+api_url: /module/arqbackup/get_list/error
+i18n_title: arqbackup.widget.error_title
+icon: fa-bomb
+listing_link: /show/listing/arqbackup/arqbackup
+search_key: label
+badge: count
