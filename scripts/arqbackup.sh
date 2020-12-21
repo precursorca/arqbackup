@@ -13,6 +13,9 @@ OUTPUT_FILE="${CACHEDIR}ARQbackup.txt"
 SEPARATOR=' = '
 MOST_RECENT_LOG="`ls -t /Library/Logs/ArqAgent/backup | head -n1`"
 THELOG="/Library/Logs/ArqAgent/backup/${MOST_RECENT_LOG}"
+# Test for QRQbackup app exists
+if [ -d "/Applications/Arq.app" ]; then
+
 # Create cache dir if it does not exist
 mkdir -p "${CACHEDIR}"
 
@@ -61,8 +64,6 @@ STATUS="Error"
 fi
 #END set the Error status
 
-# Test for QRQbackup app exists
-if [ -d "/Applications/Arq.app" ]; then
 # Output data here
 echo "version${SEPARATOR}$VERSION" > ${OUTPUT_FILE}
 echo "source${SEPARATOR}$SOURCE" >> ${OUTPUT_FILE}
@@ -71,8 +72,9 @@ echo "completed${SEPARATOR}$TIMESTAMP" >> ${OUTPUT_FILE}
 echo "amount${SEPARATOR}$GBAMOUNT" >> ${OUTPUT_FILE}
 echo "error${SEPARATOR}$REASON" >> ${OUTPUT_FILE}
 echo "status${SEPARATOR}$STATUS" >> ${OUTPUT_FILE}
+#END Output data
+
 else
-# Remove the output file
+# There is no App so Remove the output file
 rm -rf $OUTPUT_FILE
 fi
-#END Output data
