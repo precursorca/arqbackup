@@ -12,12 +12,12 @@ class ArqbackupInit extends Migration
             $table->increments('id');
             $table->string('serial_number');
             $table->string('version')->nullable();
-            $table->text('source')->nullable();
-            $table->text('destination')->nullable();
-            $table->integer('completed')->nullable();
-            $table->text('amount')->nullable();
+            $table->string('source')->nullable();
+            $table->string('destination')->nullable();
+            $table->bigInteger('completed')->nullable();
+            $table->string('amount')->nullable();
             $table->text('error')->nullable();
-            $table->text('status')->nullable();
+            $table->string('status')->nullable();
 
             $table->unique('serial_number');
             $table->index('version');
@@ -25,7 +25,6 @@ class ArqbackupInit extends Migration
             $table->index('destination');
             $table->index('completed');
             $table->index('amount');
-            $table->index('error');
             $table->index('status');
 
         });
