@@ -30,13 +30,18 @@ DESTINATION="`cat $THELOG | grep location | awk '{print $7}' | tr -d '(,)' `"
 # END Get the Storage Target Location #
 
 # Get the Backup Source #
-SOURCE="`cat $THELOG | grep backed | awk '{print $4}' | tr -d :`"
+SOURCE="`cat $THELOG | grep backed | awk '{$1=$2=$3=""; print $0}' | cut -d : -f 1`"
 # END Get the Backup Source #
 
 # Get the Amount Backed Up #
-AMOUNT="`cat $THELOG | grep bytes | awk '{print $5}' | tr -d ','`"
+AMOUNT="`cat $THELOG | grep bytes | sed -e 's/.*:\(.*\)bytes backed up/\1/' | tr -d ','`"
+if [ $AMOUNT -gt 1000000000 ]; then
 printf -v GIGABYTES "%.2f" $(bc -l <<< $(( $AMOUNT / 1000000000 )))
 GBAMOUNT="$GIGABYTES GB"
+else
+printf -v GIGABYTES "%.2f" $(bc -l <<< $(( $AMOUNT / 1000000 )))
+GBAMOUNT="$GIGABYTES MB"
+fi
 # END Get the Amount Backed Up #
 
 # Get the date of backup ending #
