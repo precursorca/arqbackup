@@ -1,7 +1,7 @@
 # Arqbackup module
 
-> v. 1.0.1  
-> December 21, 2020  
+> v. 1.0.2 
+> December 28, 2020  
 > Alex Narvey / Precursor.ca  
 
 ![ARQbackup Module Report](ARQbackup_Module.png)
@@ -16,7 +16,7 @@ The following information is stored in the table:
 * source - Name of source
 * destination - Name of destination
 * completed - Timestamp of last run
-* amount - Amount in GB
+* amount - Amount in MB or GB
 * error - Error message (the first error message, if any)
 * status = Marked as 'error' if there is an error (for easier search in MR.)
 
@@ -36,6 +36,7 @@ Errors is independent of whether the backup is fresh or stale.
 
 ## Updates
 
+* December 28, 2020 Version 1.0.2  Script can now handle spaces in Source name and amounts less than 1 GB.
 * December 21, 2020 Version 1.0.1  Made changes and modifications for efficienty suggested by John Eberle (Tuxudo)
 * December 21, 2020 Version 1.0 
 
