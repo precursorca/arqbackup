@@ -63,7 +63,6 @@ class Arqbackup_controller extends Module_controller
                ->selectRaw("COUNT(CASE WHEN completed > '$today' THEN 1 END) AS today")
                ->selectRaw("COUNT(CASE WHEN completed < '$today' THEN 1 END) AS tardy")              
                ->filter()
-               ->where('completed', '>', $timestamp)
                ->first()
                ->toLabelcount()
        );
