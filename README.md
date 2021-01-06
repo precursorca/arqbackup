@@ -1,7 +1,7 @@
 # Arqbackup module
 
-> v. 1.0.3 
-> December 29, 2020  
+> v. 1.0.4 
+> January 6, 2021  
 > Alex Narvey / Precursor.ca  
 
 ![ARQbackup Module Report](ARQbackup_Module.png)
@@ -36,6 +36,7 @@ Errors is independent of whether the backup is fresh or stale.
 
 ## Updates
 
+* December 29, 2020 Version 1.0.4  Fix for proper display of "tardy" or stale reports.
 * December 29, 2020 Version 1.0.3  Listing view now shows TimeStamp as a readable date.
 * December 28, 2020 Version 1.0.2  Script can now handle spaces in Source name and amounts less than 1 GB.
 * December 21, 2020 Version 1.0.1  Made changes and modifications for efficienty suggested by John Eberle (Tuxudo)
