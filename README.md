@@ -1,7 +1,7 @@
 # Arqbackup module
 
-> v. 1.0.4 
-> January 6, 2021  
+> v. 1.0.5 
+> January 8, 2021  
 > Alex Narvey / Precursor.ca  
 
 ![ARQbackup Module Report](ARQbackup_Module.png)
@@ -16,7 +16,7 @@ The following information is stored in the table:
 * source - Name of source
 * destination - Name of destination
 * completed - Timestamp of last run
-* amount - Amount in MB or GB
+* amount - Amount in MB, GB or TB
 * error - Error message (the first error message, if any)
 * status = Marked as 'error' if there is an error (for easier search in MR.)
 
@@ -36,7 +36,8 @@ Errors is independent of whether the backup is fresh or stale.
 
 ## Updates
 
-* December 29, 2020 Version 1.0.4  Fix for proper display of "tardy" or stale reports.
+* January 8, 2021 Version 1.0.5  Improve calculation of Amount for TB in 3 decimals, and GB and MB to 2 decimal points.
+* January 6, 2021 Version 1.0.4  Fix for proper display of "tardy" or stale reports.
 * December 29, 2020 Version 1.0.3  Listing view now shows TimeStamp as a readable date.
 * December 28, 2020 Version 1.0.2  Script can now handle spaces in Source name and amounts less than 1 GB.
 * December 21, 2020 Version 1.0.1  Made changes and modifications for efficienty suggested by John Eberle (Tuxudo)
