@@ -35,14 +35,14 @@ SOURCE="`cat $THELOG | grep backed | awk '{$1=$2=$3=""; print $0}' | cut -d : -f
 
 # Get the Amount Backed Up #
 AMOUNT="`cat $THELOG | grep bytes | sed -e 's/.*:\(.*\)bytes backed up/\1/' | tr -d ','`"
-if [ $AMOUNT -gt 1000000000000 ]; then
+if [[ $AMOUNT -gt 1000000000000 ]]; then
 GIGABYTES=$(bc <<< "scale=3; $AMOUNT/1000000000000")
 GBAMOUNT="$GIGABYTES TB"
-elif [ $AMOUNT -gt 1000000000 ]; then
+elif [[ $AMOUNT -gt 1000000000 ]]; then
 GIGABYTES=$(bc <<< "scale=2; $AMOUNT/1000000000")
 GBAMOUNT="$GIGABYTES GB"
 else
-GIGABYTES=$(bc <<< "scale=2; $AMOUNT/1000000")
+GIGABYTES=$(bc <<< "scale=1; $AMOUNT/1000000")
 GBAMOUNT="$GIGABYTES MB"
 fi
 # END Get the Amount Backed Up #
