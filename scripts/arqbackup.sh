@@ -11,30 +11,46 @@ CWD=$(dirname $0)
 CACHEDIR="$CWD/cache/"
 OUTPUT_FILE="${CACHEDIR}ARQbackup.txt"
 SEPARATOR=' = '
-MOST_RECENT_LOG="`ls -t /Library/Logs/ArqAgent/backup | head -n1`"
-THELOG="/Library/Logs/ArqAgent/backup/${MOST_RECENT_LOG}"
+MAJORVER=$(defaults read /Applications/Arq.app/Contents/Info.plist CFBundleShortVersionString | cut -c1)
+echo $MAJORVER
+
+# Set the log location based on version number#
+if [[ $MAJORVER = "6" ]]; then
+LOGLOC="/Library/Logs/ArqAgent/backup"
+elif [[ $MAJORVER = "7" ]]; then
+LOGLOC="/Library/Application Support/ArqAgent/logs/backup"
+fi
+MOST_RECENT_LOG="`ls -t "$LOGLOC" | head -n1`"
+THELOG="${LOGLOC}/${MOST_RECENT_LOG}"
+# END Set the log location#
+
+VERSION="`cat "$THELOG" | grep version | awk '{print $6}'`"
+
 # Test for QRQbackup app exists
 if [ -d "/Applications/Arq.app" ]; then
 
 # Create cache dir if it does not exist
 mkdir -p "${CACHEDIR}"
 
-# Business logic goes here:
-
-# Get the ARQ Version #
-VERSION="`cat $THELOG | grep version | awk '{print $6}'`"
-# END Get the ARQ Version #
-
 # Get the Storage Target Location #
-DESTINATION="`cat $THELOG | grep location | awk '{print $7}' | tr -d '(,)' `"
+DESTINATION="`cat "$THELOG" | grep location | awk '{print $7}' | tr -d '(,)' `"
 # END Get the Storage Target Location #
 
-# Get the Backup Source #
-SOURCE="`cat $THELOG | grep backed | awk '{$1=$2=$3=""; print $0}' | cut -d : -f 1`"
+# Get the Backup Source based on version number#
+if [[ $MAJORVER = "6" ]]; then
+SOURCE="`cat "$THELOG" | grep backed | awk '{$1=$2=$3=""; print $0}' | cut -d : -f 1`"
+elif [[ $MAJORVER = "7" ]]; then
+FULLSOURCE="`cat "$THELOG" | grep backed | awk '{$1=$2=$3=""; print $0}' | cut -d : -f 1`"
+SOURCE="${FULLSOURCE##*/}"
+fi
 # END Get the Backup Source #
 
-# Get the Amount Backed Up #
-AMOUNT="`cat $THELOG | grep bytes | sed -e 's/.*:\(.*\)bytes backed up/\1/' | tr -d ','`"
+# Get the Amount Backed Up based on version number#
+if [[ $MAJORVER = "6" ]]; then
+AMOUNT="`cat "$THELOG" | grep bytes | sed -e 's/.*:\(.*\)bytes backed up/\1/' | tr -d ','`"
+elif [[ $MAJORVER = "7" ]]; then
+AMOUNT="`cat "$THELOG" | grep uploaded: | sed -e 's/.*:\(.*\)bytes/\1/' | tr -d ','`"
+fi
 if [[ $AMOUNT -gt 1000000000000 ]]; then
 GIGABYTES=$(bc <<< "scale=3; $AMOUNT/1000000000000")
 GBAMOUNT="$GIGABYTES TB"
@@ -42,17 +58,17 @@ elif [[ $AMOUNT -gt 1000000000 ]]; then
 GIGABYTES=$(bc <<< "scale=2; $AMOUNT/1000000000")
 GBAMOUNT="$GIGABYTES GB"
 else
-GIGABYTES=$(bc <<< "scale=1; $AMOUNT/1000000")
+GIGABYTES=$(bc <<< "scale=2; $AMOUNT/1000000")
 GBAMOUNT="$GIGABYTES MB"
 fi
-# END Get the Amount Backed Up #
+# END Get the Amount Backed Up#
 
 # Get the date of backup ending #
-SDATE="`cat $THELOG | grep ended | awk '{print $1}'`"
+SDATE="`cat "$THELOG" | grep ended | awk '{print $1}'`"
 # END Get the date of backup ending #
 
 # Get the time of backup ending #
-STIME="`cat $THELOG | grep ended | awk '{print $2}'`"
+STIME="`cat "$THELOG" | grep ended | awk '{print $2}'`"
 # END Get the time of backup ending #
 
 #Get the Unix TimeStamp of the ending #
@@ -63,7 +79,7 @@ TIMESTAMP="`date -j -f "%d-%b-%Y %H:%M:%S" "$DATETIME" +%s`"
 #END Get the Unix TimeStamp of the ending #
 
 # Get only the first Error Explanation (-m 1)#
-REASON="`cat $THELOG | grep -m 1 ror: | cut -f5- -d' '`"
+REASON="`cat "$THELOG" | grep -m 1 ror: | cut -f5- -d' '`"
 # END Get the Error Explanation #
 
 # Set the Error Status #
