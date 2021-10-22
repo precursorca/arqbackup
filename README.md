@@ -1,7 +1,7 @@
 # Arqbackup module
 
-> v. 1.0.7 
-> March 4, 2021  
+> v. 1.0.8 
+> October 22, 2021  
 > Alex Narvey / Precursor.ca  
 
 ![ARQbackup Module Report](ARQbackup_Module.png)
@@ -36,6 +36,7 @@ Errors is independent of whether the backup is fresh or stale.
 
 ## Updates
 
+* October 22, 2021 Version 1.0.8  Support for new log format of complete, and more efficient script exit when not needed.
 * March 4, 2021 Version 1.0.7  Support for Arq 7. Source now reports source folder instead of volume. Amount now reports last backup amount.
 * January 16, 2021 Version 1.0.6  Improvements to calculations - extra square brackets for if statements and MB now to 1 decimal point.
 * January 8, 2021 Version 1.0.5  Improve calculation of Amount for TB in 3 decimals, and GB and MB to 2 decimal points.
