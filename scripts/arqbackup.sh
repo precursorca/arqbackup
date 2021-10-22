@@ -7,12 +7,15 @@
 # the output file is not created if the Arq.app does not live in the /Applications folder
 # the output file is removed if there is not Arq.app in the /Applications folder.
 
+# Test for QRQbackup app exists
+if [ -d "/Applications/Arq.app" ]; then
+
 CWD=$(dirname $0)
 CACHEDIR="$CWD/cache/"
 OUTPUT_FILE="${CACHEDIR}ARQbackup.txt"
 SEPARATOR=' = '
 MAJORVER=$(defaults read /Applications/Arq.app/Contents/Info.plist CFBundleShortVersionString | cut -c1)
-echo $MAJORVER
+#echo $MAJORVER
 
 # Set the log location based on version number#
 if [[ $MAJORVER = "6" ]]; then
@@ -25,9 +28,6 @@ THELOG="${LOGLOC}/${MOST_RECENT_LOG}"
 # END Set the log location#
 
 VERSION="`cat "$THELOG" | grep version | awk '{print $6}'`"
-
-# Test for QRQbackup app exists
-if [ -d "/Applications/Arq.app" ]; then
 
 # Create cache dir if it does not exist
 mkdir -p "${CACHEDIR}"
@@ -48,8 +48,6 @@ fi
 # Get the Amount Backed Up based on version number#
 if [[ $MAJORVER = "6" ]]; then
 AMOUNT="`cat "$THELOG" | grep bytes | sed -e 's/.*:\(.*\)bytes backed up/\1/' | tr -d ','`"
-elif [[ $MAJORVER = "7" ]]; then
-AMOUNT="`cat "$THELOG" | grep uploaded: | sed -e 's/.*:\(.*\)bytes/\1/' | tr -d ','`"
 fi
 if [[ $AMOUNT -gt 1000000000000 ]]; then
 GIGABYTES=$(bc <<< "scale=3; $AMOUNT/1000000000000")
@@ -61,22 +59,29 @@ else
 GIGABYTES=$(bc <<< "scale=2; $AMOUNT/1000000")
 GBAMOUNT="$GIGABYTES MB"
 fi
+
+if [[ $MAJORVER = "7" ]]; then
+GBAMOUNT="`cat "$THELOG" | grep compressed')': | awk '{print $7 $8}' | tr -d ','`"
+fi
 # END Get the Amount Backed Up#
+#echo $GBAMOUNT
 
 # Get the date of backup ending #
 SDATE="`cat "$THELOG" | grep ended | awk '{print $1}'`"
 # END Get the date of backup ending #
+#echo $SDATE
 
 # Get the time of backup ending #
 STIME="`cat "$THELOG" | grep ended | awk '{print $2}'`"
 # END Get the time of backup ending #
+#echo $STIME 
 
 #Get the Unix TimeStamp of the ending #
 DATETIME="$SDATE $STIME"
-#date -d '2012-03-22 22:00:05 EDT' +%s
-#date -j -f "%Y-%m-%d %H-%M-%S" '2020-12-17 11-30-15' +%s
+#TIMESTAMP="`date -j -f "%d-%b-%Y %H:%M:%S" "$DATETIME" +%s`"
 TIMESTAMP="`date -j -f "%d-%b-%Y %H:%M:%S" "$DATETIME" +%s`"
 #END Get the Unix TimeStamp of the ending #
+#echo $TIMESTAMP
 
 # Get only the first Error Explanation (-m 1)#
 REASON="`cat "$THELOG" | grep -m 1 ror: | cut -f5- -d' '`"
