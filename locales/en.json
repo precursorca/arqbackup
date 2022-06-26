@@ -1,34 +1,34 @@
 {
     "column": {
-        "version": "version",
-        "source": "source",
-        "destination": "destination",
-        "completed": "completed",
-        "amount": "amount",
-        "error": "error",
-        "status": "status"
+        "version": "Version",
+        "source": "Source",
+        "destination": "Destination",
+        "completed": "Completed",
+        "amount": "Amount",
+        "error": "Error",
+        "status": "Status"
     },
     "listing": {
-        "title": "arqbackup"
+        "title": "Arq Backup"
     },
     "report": {
-        "title": "arqbackup"
+        "title": "Arq Backup"
     },
-    "title": "arqbackup",
-    "completed": "completed",
-    "tardy": "tardy",
-    "error": "error",
+    "title": "Arq Backup",
+    "completed": "Completed",
+    "tardy": "Tardy",
+    "error": "Error",
     "widget": {
-        "title": "ARQbackup Status",
+        "title": "Arq Backup Status",
     	"completed": "Current",
     	"tardy": "Stale",
    		"error": "Error",
    		"total": "Total",
-    	"version_title": "version",
-        "source_title": "source",
-        "destination_title": "destination",
-        "completed_title": "completed",
-        "amount_title": "amount",
-        "error_title": "error"
+    	"version_title": "Version",
+        "source_title": "Source",
+        "destination_title": "Destination",
+        "completed_title": "Completed",
+        "amount_title": "Amount",
+        "error_title": "Error"
     }
 }
