@@ -1,10 +1,10 @@
-# Arqbackup module
+# Arq Backup module
 
-> v. 1.0.8 
-> October 22, 2021  
+> v. 1.0.9 
+> June 26, 2022 
 > Alex Narvey / Precursor.ca  
 
-![ARQbackup Module Report](ARQbackup_Module.png)
+![Arq Backup Module Report](ARQbackup_Module.png)
 
 Reports on Arqbackup backup information
 
@@ -12,13 +12,13 @@ Retrieves information from the most recent log file /Library/Logs/ArqAgent/backu
 
 The following information is stored in the table:
 
-* version - The Arqbackup.app version
-* source - Name of source (v6 = source volume. v7 = source folder)
-* destination - Name of destination
-* completed - Timestamp of last run
-* amount - Amount in MB, GB or TB (v6 = total backed up. v7 = amount of last backup)
-* error - Error message (the first error message, if any)
-* status = Marked as 'error' if there is an error (for easier search in MR.)
+* Version - The Arq.app version
+* Source - Name of source (v6 = source volume. v7 = source folder)
+* Destination - Name of destination
+* Completed - Timestamp of last run
+* Amount - Amount in MB, GB or TB (v6 = total backed up. v7 = amount of last backup)
+* Error - Error message (the first error message, if any)
+* Status = Marked as 'error' if there is an error (for easier search in MR.)
 
 ## Notes
 
@@ -36,6 +36,7 @@ Errors is independent of whether the backup is fresh or stale.
 
 ## Updates
 
+* June 26, 2022 Version 1.0.9  Corrections to script. Capitalization of lables and proper spelling of 'Arq Backup' instead of 'ARQbackup'.
 * October 22, 2021 Version 1.0.8  Support for new log format of complete, and more efficient script exit when not needed.
 * March 4, 2021 Version 1.0.7  Support for Arq 7. Source now reports source folder instead of volume. Amount now reports last backup amount.
 * January 16, 2021 Version 1.0.6  Improvements to calculations - extra square brackets for if statements and MB now to 1 decimal point.
