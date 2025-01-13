@@ -1,7 +1,7 @@
 # Arq Backup module
 
-> v. 1.0.9 
-> June 26, 2022 
+> v. 1.1.0
+> January, 2025 
 > Alex Narvey / Precursor.ca  
 
 ![Arq Backup Module Report](ARQbackup_Module.png)
@@ -36,6 +36,7 @@ Errors is independent of whether the backup is fresh or stale.
 
 ## Updates
 
+* January 13, 2025 Version 1.1.0  Added a field for 'stored' = total of stored data after cleanup.
 * June 26, 2022 Version 1.0.9  Corrections to script. Capitalization of lables and proper spelling of 'Arq Backup' instead of 'ARQbackup'.
 * October 22, 2021 Version 1.0.8  Support for new log format of complete, and more efficient script exit when not needed.
 * March 4, 2021 Version 1.0.7  Support for Arq 7. Source now reports source folder instead of volume. Amount now reports last backup amount.
