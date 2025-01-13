@@ -17,6 +17,7 @@ The following information is stored in the table:
 * Destination - Name of destination
 * Completed - Timestamp of last run
 * Amount - Amount in MB, GB or TB (v6 = total backed up. v7 = amount of last backup)
+* Stored - Amount in MB, GB or TB of data stored after cleanup
 * Error - Error message (the first error message, if any)
 * Status = Marked as 'error' if there is an error (for easier search in MR.)
 
