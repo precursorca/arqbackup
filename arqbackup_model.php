@@ -14,7 +14,8 @@ class Arqbackup_model extends Eloquent
       'source',  // Name of backup source material
       'destination',  // Name of backup destintation
       'completed',  // Timestamp of last successful backup
-      'amount',  // Amount backed up in GB
+      'amount',  // Amount uploaded up in GB
+      'stored',  // Total Amount stored in GB
       'error',   // Error description (if listed)    
       'status',   // Error condition (lists "Error" if there is an error message)
 
