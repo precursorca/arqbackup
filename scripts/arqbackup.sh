@@ -45,12 +45,19 @@ SOURCE="${FULLSOURCE##*/}"
 fi
 # END Get the Backup Source #
 
-# Get the Amount Backed Up
+# Get the Amount Uploaded
 if [[ $MAJORVER = "7" ]]; then
 GBAMOUNT="$(cat "$THELOG" | grep compressed')': | awk '{print $7 $8}' | tr -d ',')"
 fi
-# END Get the Amount Backed Up#
+# END Get the Amount Uploaded#
 #echo $GBAMOUNT
+
+# Get the Total Amount Stored
+if [[ $MAJORVER = "7" ]]; then
+GBSTORED="$(cat "$THELOG" | grep after | awk '{print $9 $10}')"
+fi
+# END Get the Total Amount Stored#
+#echo $GBSTORED
 
 # Get the date of backup ending #
 SDATE="$(cat "$THELOG" | grep ended | awk '{print $1}')"
@@ -85,6 +92,7 @@ echo "source${SEPARATOR}$SOURCE" >> "${OUTPUT_FILE}"
 echo "destination${SEPARATOR}$DESTINATION" >> "${OUTPUT_FILE}"
 echo "completed${SEPARATOR}$TIMESTAMP" >> "${OUTPUT_FILE}"
 echo "amount${SEPARATOR}$GBAMOUNT" >> "${OUTPUT_FILE}"
+echo "stored${SEPARATOR}$GBSTORED" >> "${OUTPUT_FILE}"
 echo "error${SEPARATOR}$REASON" >> "${OUTPUT_FILE}"
 echo "status${SEPARATOR}$STATUS" >> "${OUTPUT_FILE}"
 #END Output data
