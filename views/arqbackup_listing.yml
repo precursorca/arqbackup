@@ -17,7 +17,10 @@ table:
         formatter: timestampToMoment
     -   column: arqbackup.amount
         i18n_header: arqbackup.column.amount
+    -   column: arqbackup.stored
+        i18n_header: arqbackup.column.stored
     -   column: arqbackup.error
         i18n_header: arqbackup.column.error
     -   column: arqbackup.status
         i18n_header: arqbackup.column.status
+        
