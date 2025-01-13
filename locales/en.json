@@ -5,6 +5,7 @@
         "destination": "Destination",
         "completed": "Completed",
         "amount": "Amount",
+        "stored": "Stored",
         "error": "Error",
         "status": "Status"
     },
@@ -29,6 +30,7 @@
         "destination_title": "Destination",
         "completed_title": "Completed",
         "amount_title": "Amount",
+        "stored_title": "Stored",
         "error_title": "Error"
     }
 }
