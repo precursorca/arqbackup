@@ -55,6 +55,11 @@ fi
 # Get the Total Amount Stored
 if [[ $MAJORVER = "7" ]]; then
 GBSTORED="$(cat "$THELOG" | grep after | awk '{print $9 $10}')"
+if  [[ GBSTORED = "" ]]; then
+BYTESCOMMAS="$(cat /Users/precursor/Desktop/The\ log.txt | grep bytes | awk '{print $7}')"
+BYTES=$(echo $BYTESCOMMAS | tr -d ',')
+GBS=$(echo "scale=2; $BYTES/1024/1024/1024" | bc -l)
+GBSTORED=$(echo $GBS " GB")
 fi
 # END Get the Total Amount Stored#
 #echo $GBSTORED
