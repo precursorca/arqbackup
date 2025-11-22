@@ -1,7 +1,11 @@
 <div id="arqbackup-tab"></div>
 <h2 data-i18n="arqbackup.title"></h2>
 
-<table id="arqbackup-tab-table"></table>
+<table id="arqbackup-tab-table"
+       class="table table-responsive table-striped table-condensed"
+       style="max-width: 600px;">
+    <tbody></tbody>
+</table>
 
 <script>
 $(document).on('appReady', function(){
