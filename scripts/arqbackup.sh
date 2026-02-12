@@ -7,15 +7,16 @@
 # the output file is not created if the Arq.app does not live in the /Applications folder
 # the output file is removed if there is not Arq.app in the /Applications folder.
 
-# Test for QRQbackup app exists
-if [ -d "/Applications/Arq.app" ]; then
-
 CWD=$(dirname "$0")
 CACHEDIR="$CWD/cache/"
 OUTPUT_FILE="${CACHEDIR}ARQbackup.txt"
 SEPARATOR=' = '
-MAJORVER=$(defaults read /Applications/Arq.app/Contents/Info.plist CFBundleShortVersionString | cut -c1)
+
+# Test for QRQbackup app exists
+if [ -d "/Applications/Arq.app" ]; then
+
 #echo $MAJORVER
+MAJORVER=$(defaults read /Applications/Arq.app/Contents/Info.plist CFBundleShortVersionString | cut -c1)
 
 # Set the log location based on version number#
 if [[ $MAJORVER = "6" ]]; then
@@ -105,6 +106,6 @@ echo "status${SEPARATOR}$STATUS" >> "${OUTPUT_FILE}"
 #END Output data
 
 else
-# There is no App so Remove the output file
-rm -rf "${OUTPUT_FILE}"
+# There is no App so create a blank output file
+touch "${OUTPUT_FILE}"
 fi
